@@ -1,0 +1,2 @@
+rootProject.name = "libjpeg-turbo-android-prefab"
+include ':libjpeg-turbo'

@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+
+    buildFeatures {
+        prefabPublishing true
+    }
+
+    prefab {
+        "jpeg" {
+            headers "src/main/cpp/include"
+        }
+        "turbojpeg" {
+            headers "src/main/cpp/include"
+        }
+    }
+
+    packagingOptions {
+        exclude("**/libjpeg.so")
+        exclude("**/libturbojpeg.so")
+        exclude("**/libc++_shared.so")
+    }
+}
